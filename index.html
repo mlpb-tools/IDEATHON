@@ -3,300 +3,850 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guide Pédagogique : Idéathon Jeunes en Mission Locale</title>
+    <title>Compétence A3 - Management Fonctionnel</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
         body {
             font-family: 'Inter', sans-serif;
         }
-        .page-card {
-            break-inside: avoid;
+        
+        html {
+            scroll-behavior: smooth;
         }
-        @media print {
-            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-            .no-print { display: none; }
-            .page-card {
-                margin-top: 2rem;
-                page-break-after: always;
-            }
+        
+        .arrow {
+            stroke: #6b7280;
+            stroke-width: 2;
+            fill: none;
+            marker-end: url(#arrowhead);
+        }
+        
+        .bidirectional-arrow {
+            stroke: #6b7280;
+            stroke-width: 2;
+            fill: none;
+            marker-start: url(#arrowhead);
+            marker-end: url(#arrowhead);
+        }
+        
+        .block-shadow {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+        
+        .hover-scale:hover {
+            transform: scale(1.02);
+        }
+        
+        .action-banner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 24px;
+            overflow: hidden;
+            border-radius: 12px 12px 0 0;
+            background: linear-gradient(90deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.9) 100%);
+            backdrop-filter: blur(4px);
+        }
+        
+        .action-text {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            animation: scroll-banner 12s linear infinite;
+            white-space: nowrap;
+            font-size: 10px;
+            font-weight: 600;
+            color: #1e293b;
+            padding: 0 20px;
+        }
+        
+        @keyframes scroll-banner {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        .action-text span {
+            margin: 0 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
     </style>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen p-6">
+    <div class="max-w-7xl mx-auto">
+        <!-- Navigation rapide -->
+        <div class="text-center mb-8">
+            <div class="bg-white/80 backdrop-blur-sm p-4 rounded-xl shadow-lg inline-block">
+                <p class="text-sm text-slate-600 mb-3">Navigation rapide :</p>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <a href="#reunions" class="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs hover:bg-indigo-200 transition-colors">📅 Réunions</a>
+                    <a href="#equipe" class="px-3 py-1 bg-rose-100 text-rose-700 rounded-full text-xs hover:bg-rose-200 transition-colors">👥 Équipe</a>
+                    <a href="#conclusion" class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs hover:bg-slate-200 transition-colors">✅ Conclusion</a>
+                </div>
+            </div>
+        </div>
 
-    <div class="max-w-4xl mx-auto p-4 sm:p-8">
 
-        <!-- Page 1: Présentation -->
-        <section class="bg-white rounded-2xl shadow-lg overflow-hidden mb-8 page-card">
-            <div class="p-8 bg-blue-600 text-white">
-                <div class="flex items-center gap-4">
-                    <div class="bg-white/20 p-3 rounded-xl">
-                        <i data-lucide="rocket" class="w-10 h-10"></i>
+
+
+
+        <!-- Section Réunions -->
+        <div id="reunions" class="mt-16 pt-16">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-slate-800 mb-6">📅 Organisation des Réunions</h2>
+                <p class="text-xl text-slate-600 max-w-4xl mx-auto">Schéma interactif du système de réunions et canal Teams</p>
+            </div>
+
+            <!-- Container du schéma des réunions -->
+            <div class="relative bg-white/50 backdrop-blur-sm rounded-3xl p-16 shadow-xl mb-16" style="height: 700px;">
+                <!-- SVG pour les connexions -->
+                <svg class="absolute inset-0 w-full h-full pointer-events-none" style="z-index: 1;">
+                    <defs>
+                        <marker id="meetingArrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                            <polygon points="0 0, 8 3, 0 6" fill="#6366f1" />
+                        </marker>
+                    </defs>
+                    
+                    <!-- Connexions bidirectionnelles du hub central vers chaque type de réunion -->
+                    <line x1="50%" y1="50%" x2="30%" y2="20%" stroke="#6366f1" stroke-width="2" marker-end="url(#meetingArrow)" />
+                    <line x1="30%" y1="20%" x2="50%" y2="50%" stroke="#6366f1" stroke-width="2" marker-end="url(#meetingArrow)" />
+                    
+                    <line x1="50%" y1="50%" x2="70%" y2="20%" stroke="#6366f1" stroke-width="2" marker-end="url(#meetingArrow)" />
+                    <line x1="70%" y1="20%" x2="50%" y2="50%" stroke="#6366f1" stroke-width="2" marker-end="url(#meetingArrow)" />
+                    
+                    <line x1="50%" y1="50%" x2="80%" y2="50%" stroke="#6366f1" stroke-width="2" marker-end="url(#meetingArrow)" />
+                    <line x1="80%" y1="50%" x2="50%" y2="50%" stroke="#6366f1" stroke-width="2" marker-end="url(#meetingArrow)" />
+                    
+                    <line x1="50%" y1="50%" x2="70%" y2="80%" stroke="#6366f1" stroke-width="2" marker-end="url(#meetingArrow)" />
+                    <line x1="70%" y1="80%" x2="50%" y2="50%" stroke="#6366f1" stroke-width="2" marker-end="url(#meetingArrow)" />
+                    
+                    <line x1="50%" y1="50%" x2="30%" y2="80%" stroke="#6366f1" stroke-width="2" marker-end="url(#meetingArrow)" />
+                    <line x1="30%" y1="80%" x2="50%" y2="50%" stroke="#6366f1" stroke-width="2" marker-end="url(#meetingArrow)" />
+                    
+                    <line x1="50%" y1="50%" x2="20%" y2="50%" stroke="#6366f1" stroke-width="2" marker-end="url(#meetingArrow)" />
+                    <line x1="20%" y1="50%" x2="50%" y2="50%" stroke="#6366f1" stroke-width="2" marker-end="url(#meetingArrow)" />
+                </svg>
+
+                <!-- Hub Central - Coordinateur -->
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer" style="z-index: 10;" onclick="openMeetingModal('coordinateur')">
+                    <div class="bg-gradient-to-br from-indigo-600 to-purple-700 text-white p-6 rounded-2xl shadow-xl hover:scale-105 transition-transform text-center w-72">
+                        <div class="text-3xl mb-3">🎯</div>
+                        <h3 class="font-bold text-lg mb-2">Pôle Innovations, Outillage</h3>
+                        <p class="text-sm opacity-90 mb-1">& Professionnalisation</p>
+                        <div class="mt-3 text-xs bg-white/20 rounded-full px-3 py-1">Hub central des réunions</div>
+                        
+                        <!-- Boîte à outils -->
+                        <div class="mt-4 pt-4 border-t border-white/20">
+                            <div class="text-xs font-semibold mb-2 text-yellow-200">🧰 Boîte à outils</div>
+                            <div class="space-y-1">
+                                <a href="https://mlpb-tools.github.io/team-report/" target="_blank" onclick="event.stopPropagation()" class="block text-xs bg-white/10 hover:bg-white/20 rounded px-2 py-1 transition-colors">
+                                    📝 CR Réunions
+                                </a>
+                                <a href="https://mlpb-tools.github.io/regards_croises/" target="_blank" onclick="event.stopPropagation()" class="block text-xs bg-white/10 hover:bg-white/20 rounded px-2 py-1 transition-colors">
+                                    🔍 Regards Croisés
+                                </a>
+                                <a href="https://mlpb-tools.github.io/com-mcti/" target="_blank" onclick="event.stopPropagation()" class="block text-xs bg-white/10 hover:bg-white/20 rounded px-2 py-1 transition-colors">
+                                    💬 Com Direction
+                                </a>
+                            </div>
+                        </div>
                     </div>
+                </div>
+
+                <!-- Réunion mensuelle ambassadeurs -->
+                <div class="absolute top-8 left-1/4 transform -translate-x-1/2 cursor-pointer" style="z-index: 5;" onclick="openMeetingModal('ambassadeurs')">
+                    <div class="bg-gradient-to-br from-green-500 to-emerald-600 text-white p-4 rounded-xl shadow-lg hover:scale-105 transition-transform text-center w-56 relative overflow-hidden">
+                        <div class="action-banner">
+                            <div class="action-text">
+                                <span>PARTAGER</span>
+                                <span>•</span>
+                                <span>CO-CONSTRUIRE</span>
+                                <span>•</span>
+                                <span>VALIDER</span>
+                                <span>•</span>
+                                <span>PARTAGER</span>
+                                <span>•</span>
+                                <span>CO-CONSTRUIRE</span>
+                                <span>•</span>
+                                <span>VALIDER</span>
+                            </div>
+                        </div>
+                        <div class="text-xl mb-2 mt-2">👥</div>
+                        <h4 class="font-semibold text-sm mb-1">Réunion Ambassadeurs</h4>
+                        <p class="text-xs opacity-90">Mensuelle - 1h visio</p>
+                    </div>
+                </div>
+
+                <!-- Réunions thématiques -->
+                <div class="absolute top-8 right-1/4 transform translate-x-1/2 cursor-pointer" style="z-index: 5;" onclick="openMeetingModal('thematiques')">
+                    <div class="bg-gradient-to-br from-sky-400 to-blue-500 text-white p-4 rounded-xl shadow-lg hover:scale-105 transition-transform text-center w-56 relative overflow-hidden">
+                        <div class="action-banner">
+                            <div class="action-text">
+                                <span>SE FORMER</span>
+                                <span>•</span>
+                                <span>SE FORMER</span>
+                                <span>•</span>
+                                <span>SE FORMER</span>
+                                <span>•</span>
+                                <span>SE FORMER</span>
+                                <span>•</span>
+                                <span>SE FORMER</span>
+                            </div>
+                        </div>
+                        <div class="text-xl mb-2 mt-2">🛠️</div>
+                        <h4 class="font-semibold text-sm mb-1">Réunions Thématiques</h4>
+                        <p class="text-xs opacity-90">Semestrielles + formations partenaires</p>
+                    </div>
+                </div>
+
+                <!-- Sessions internationales -->
+                <div class="absolute top-1/2 right-4 cursor-pointer" style="z-index: 5;" onclick="openMeetingModal('internationales')">
+                    <div class="bg-gradient-to-br from-purple-500 to-violet-600 text-white p-4 rounded-xl shadow-lg hover:scale-105 transition-transform text-center w-56 relative overflow-hidden">
+                        <div class="action-banner">
+                            <div class="action-text">
+                                <span>EXPÉRIMENTER</span>
+                                <span>•</span>
+                                <span>RENCONTRER</span>
+                                <span>•</span>
+                                <span>EXPÉRIMENTER</span>
+                                <span>•</span>
+                                <span>RENCONTRER</span>
+                                <span>•</span>
+                                <span>EXPÉRIMENTER</span>
+                            </div>
+                        </div>
+                        <div class="text-xl mb-2 mt-2">🌍</div>
+                        <h4 class="font-semibold text-sm mb-1">Sessions Internationales</h4>
+                        <p class="text-xs opacity-90">3-4 jours - 2/an</p>
+                    </div>
+                </div>
+
+                <!-- Réunions territoires -->
+                <div class="absolute bottom-8 right-1/4 transform translate-x-1/2 cursor-pointer" style="z-index: 5;" onclick="openMeetingModal('territoires')">
+                    <div class="bg-gradient-to-br from-blue-700 to-indigo-800 text-white p-4 rounded-xl shadow-lg hover:scale-105 transition-transform text-center w-56 relative overflow-hidden">
+                        <div class="action-banner">
+                            <div class="action-text">
+                                <span>ANCRER</span>
+                                <span>•</span>
+                                <span>PARTAGER</span>
+                                <span>•</span>
+                                <span>MOBILISER</span>
+                                <span>•</span>
+                                <span>FAIRE REMONTER</span>
+                                <span>•</span>
+                                <span>ANCRER</span>
+                                <span>•</span>
+                                <span>PARTAGER</span>
+                            </div>
+                        </div>
+                        <div class="text-xl mb-2 mt-2">📍</div>
+                        <h4 class="font-semibold text-sm mb-1">Réunions Territoires</h4>
+                        <p class="text-xs opacity-90">Bi-mensuelles + travail collaboratif</p>
+                    </div>
+                </div>
+
+                <!-- Réunion stratégique -->
+                <div class="absolute bottom-8 left-1/4 transform -translate-x-1/2 cursor-pointer" style="z-index: 5;" onclick="openMeetingModal('strategique')">
+                    <div class="bg-gradient-to-br from-red-600 to-rose-700 text-white p-4 rounded-xl shadow-lg hover:scale-105 transition-transform text-center w-56 relative overflow-hidden">
+                        <div class="action-banner">
+                            <div class="action-text">
+                                <span>AJUSTER</span>
+                                <span>•</span>
+                                <span>ÉVALUER</span>
+                                <span>•</span>
+                                <span>PILOTER</span>
+                                <span>•</span>
+                                <span>AJUSTER</span>
+                                <span>•</span>
+                                <span>ÉVALUER</span>
+                                <span>•</span>
+                                <span>PILOTER</span>
+                            </div>
+                        </div>
+                        <div class="text-xl mb-2 mt-2">📊</div>
+                        <h4 class="font-semibold text-sm mb-1">Réunion Stratégique</h4>
+                        <p class="text-xs opacity-90">Mensuelle + modalité élargie</p>
+                    </div>
+                </div>
+
+                <!-- Flashmob -->
+                <div class="absolute top-1/2 left-4 cursor-pointer" style="z-index: 5;" onclick="openMeetingModal('flashmob')">
+                    <div class="bg-gradient-to-br from-yellow-500 to-amber-600 text-white p-4 rounded-xl shadow-lg hover:scale-105 transition-transform text-center w-56 relative overflow-hidden">
+                        <div class="action-banner">
+                            <div class="action-text">
+                                <span>S'INFORMER</span>
+                                <span>•</span>
+                                <span>INTERROGER</span>
+                                <span>•</span>
+                                <span>S'INFORMER</span>
+                                <span>•</span>
+                                <span>INTERROGER</span>
+                                <span>•</span>
+                                <span>S'INFORMER</span>
+                            </div>
+                        </div>
+                        <div class="text-xl mb-2 mt-2">🎬</div>
+                        <h4 class="font-semibold text-sm mb-1">Flashmob Mensuel</h4>
+                        <p class="text-xs opacity-90">Jeudi 8h30-9h</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Légende réunions -->
+            <div class="text-center">
+                <div class="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-lg inline-block">
+                    <p class="text-sm text-slate-600 mb-4">💡 Cliquez sur chaque type de réunion pour voir les détails et modalités</p>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-xs">
+                        <div class="flex items-center"><div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>Ambassadeurs</div>
+                        <div class="flex items-center"><div class="w-3 h-3 bg-sky-500 rounded-full mr-2"></div>Thématiques + Partenaires</div>
+                        <div class="flex items-center"><div class="w-3 h-3 bg-purple-500 rounded-full mr-2"></div>International</div>
+                        <div class="flex items-center"><div class="w-3 h-3 bg-blue-700 rounded-full mr-2"></div>Territoires + Collaboratif</div>
+                        <div class="flex items-center"><div class="w-3 h-3 bg-red-600 rounded-full mr-2"></div>Stratégique + Élargie</div>
+                        <div class="flex items-center"><div class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>Flashmob</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Équipe - Réseau des Ambassadeurs -->
+        <div id="equipe" class="mt-32 pt-16">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-slate-800 mb-6">👥 Réseau des Ambassadeurs Territoriaux</h2>
+                <p class="text-xl text-slate-600 max-w-4xl mx-auto">Mission Locale Pays Basque - Organisation en constellation</p>
+            </div>
+
+            <!-- Container du schéma organisationnel -->
+            <div class="relative bg-white/50 backdrop-blur-sm rounded-3xl p-16 shadow-xl" style="height: 800px;">
+                <!-- SVG pour les connexions -->
+                <svg class="absolute inset-0 w-full h-full pointer-events-none" style="z-index: 1;">
+                    <defs>
+                        <marker id="teamArrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                            <polygon points="0 0, 8 3, 0 6" fill="#94a3b8" />
+                        </marker>
+                    </defs>
+                    
+                    <!-- Connexions du hub central vers chaque territoire -->
+                    <line x1="50%" y1="50%" x2="50%" y2="20%" stroke="#f97316" stroke-width="2" marker-end="url(#teamArrow)" />
+                    <line x1="50%" y1="50%" x2="80%" y2="30%" stroke="#f97316" stroke-width="2" marker-end="url(#teamArrow)" />
+                    <line x1="50%" y1="50%" x2="85%" y2="70%" stroke="#f97316" stroke-width="2" marker-end="url(#teamArrow)" />
+                    <line x1="50%" y1="50%" x2="50%" y2="85%" stroke="#f97316" stroke-width="2" marker-end="url(#teamArrow)" />
+                    <line x1="50%" y1="50%" x2="15%" y2="70%" stroke="#f97316" stroke-width="2" marker-end="url(#teamArrow)" />
+                    <line x1="50%" y1="50%" x2="20%" y2="30%" stroke="#f97316" stroke-width="2" marker-end="url(#teamArrow)" />
+                    
+                    <!-- Connexions transversales entre territoires -->
+                    <line x1="50%" y1="25%" x2="75%" y2="35%" stroke="#94a3b8" stroke-width="1" stroke-dasharray="5,5" />
+                    <line x1="75%" y1="35%" x2="80%" y2="65%" stroke="#94a3b8" stroke-width="1" stroke-dasharray="5,5" />
+                    <line x1="25%" y1="35%" x2="25%" y2="65%" stroke="#94a3b8" stroke-width="1" stroke-dasharray="5,5" />
+                </svg>
+
+                <!-- Hub Central - Coordinateur -->
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer" style="z-index: 10;" onclick="openModal('coordinateur')">
+                    <div class="bg-gradient-to-br from-orange-500 to-red-600 text-white p-6 rounded-2xl shadow-xl hover:scale-105 transition-transform text-center w-64">
+                        <div class="text-3xl mb-3">🎯</div>
+                        <h3 class="font-bold text-lg mb-2">Pôle Innovations, Outillage</h3>
+                        <p class="text-sm opacity-90">& Professionnalisation</p>
+                        <div class="mt-3 text-xs bg-white/20 rounded-full px-3 py-1">Cliquez pour détails</div>
+                    </div>
+                </div>
+
+                <!-- Sud Pays Basque -->
+                <div class="absolute top-4 left-1/2 transform -translate-x-1/2 cursor-pointer" style="z-index: 5;" onclick="openModal('sud')">
+                    <div class="bg-gradient-to-br from-emerald-500 to-green-600 text-white p-5 rounded-xl shadow-lg hover:scale-105 transition-transform text-center w-56">
+                        <div class="text-2xl mb-2">🌿</div>
+                        <h4 class="font-semibold text-base mb-1">Sud Pays Basque</h4>
+                        <p class="text-xs opacity-90 mb-2">Cathy & Julie</p>
+                        <p class="text-xs bg-white/20 rounded px-2 py-1">Mobilité Territoire</p>
+                        <p class="text-xs opacity-90 mt-1">+ Béa, Lucile & Isa</p>
+                        <p class="text-xs bg-white/30 rounded px-2 py-1 mt-1">Transfrontalier & International</p>
+                    </div>
+                </div>
+
+                <!-- BAB Sud -->
+                <div class="absolute top-24 right-8 cursor-pointer" style="z-index: 5;" onclick="openModal('babsud')">
+                    <div class="bg-gradient-to-br from-blue-500 to-cyan-600 text-white p-5 rounded-xl shadow-lg hover:scale-105 transition-transform text-center w-56">
+                        <div class="text-2xl mb-2">🌊</div>
+                        <h4 class="font-semibold text-base mb-1">BAB Sud</h4>
+                        <p class="text-xs opacity-90 mb-2">Mélissa</p>
+                        <p class="text-xs bg-white/20 rounded px-2 py-1">Mobilité & Accompagnement</p>
+                        <p class="text-xs opacity-90 mt-1">+ Maiwenn</p>
+                        <p class="text-xs bg-white/30 rounded px-2 py-1 mt-1">Projets innovants (LS4YOU)</p>
+                    </div>
+                </div>
+
+                <!-- BAB Nord -->
+                <div class="absolute bottom-24 right-4 cursor-pointer" style="z-index: 5;" onclick="openModal('babnord')">
+                    <div class="bg-gradient-to-br from-purple-500 to-indigo-600 text-white p-5 rounded-xl shadow-lg hover:scale-105 transition-transform text-center w-56">
+                        <div class="text-2xl mb-2">🎨</div>
+                        <h4 class="font-semibold text-base mb-1">BAB Nord</h4>
+                        <p class="text-xs opacity-90 mb-2">Pauline Zara</p>
+                        <p class="text-xs bg-white/20 rounded px-2 py-1">Innovation Pédagogique</p>
+                    </div>
+                </div>
+
+                <!-- Mobilité Territoire -->
+                <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 cursor-pointer" style="z-index: 5;" onclick="openModal('territoire')">
+                    <div class="bg-gradient-to-br from-teal-500 to-cyan-600 text-white p-5 rounded-xl shadow-lg hover:scale-105 transition-transform text-center w-56">
+                        <div class="text-2xl mb-2">🚗</div>
+                        <h4 class="font-semibold text-base mb-1">Mobilité Territoire</h4>
+                        <p class="text-xs opacity-90 mb-2">JPT</p>
+                        <p class="text-xs bg-white/20 rounded px-2 py-1">Référent Mobilité</p>
+                    </div>
+                </div>
+
+                <!-- PBI -->
+                <div class="absolute bottom-24 left-4 cursor-pointer" style="z-index: 5;" onclick="openModal('pbi')">
+                    <div class="bg-gradient-to-br from-yellow-500 to-amber-600 text-white p-5 rounded-xl shadow-lg hover:scale-105 transition-transform text-center w-56">
+                        <div class="text-2xl mb-2">⚡</div>
+                        <h4 class="font-semibold text-base mb-1">PBI</h4>
+                        <p class="text-xs opacity-90 mb-2">Alain</p>
+                        <p class="text-xs bg-white/20 rounded px-2 py-1">Territoire/LS4YOU/ROAMING</p>
+                    </div>
+                </div>
+
+                <!-- Transfrontalier -->
+                <div class="absolute top-24 left-8 cursor-pointer" style="z-index: 5;" onclick="openModal('transfrontalier')">
+                    <div class="bg-gradient-to-br from-slate-500 to-gray-600 text-white p-5 rounded-xl shadow-lg hover:scale-105 transition-transform text-center w-56">
+                        <div class="text-2xl mb-2">🤝</div>
+                        <h4 class="font-semibold text-base mb-1">Transfrontalier</h4>
+                        <p class="text-xs opacity-90 mb-2">Zigor</p>
+                        <p class="text-xs bg-white/20 rounded px-2 py-1">Lanean - Baserriberri</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Légende -->
+            <div class="mt-8 text-center">
+                <div class="bg-white/80 backdrop-blur-sm p-4 rounded-xl shadow-lg inline-block">
+                    <p class="text-sm text-slate-600 mb-2">💡 Cliquez sur chaque bloc pour voir les détails du rôle</p>
+                    <div class="flex items-center justify-center gap-4 text-xs">
+                        <div class="flex items-center"><div class="w-3 h-0.5 bg-orange-500 mr-2"></div>Coordination centrale</div>
+                        <div class="flex items-center"><div class="w-3 h-0.5 bg-slate-400 border-dashed border-t mr-2"></div>Réseau transversal</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal pour les détails -->
+        <div id="modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center" style="z-index: 1000;" onclick="closeModal()">
+            <div class="bg-white rounded-2xl p-8 max-w-2xl mx-4 shadow-2xl" onclick="event.stopPropagation()">
+                <div class="flex justify-between items-start mb-6">
+                    <div id="modal-header" class="flex items-center">
+                        <span id="modal-icon" class="text-3xl mr-4"></span>
+                        <div>
+                            <h3 id="modal-title" class="text-2xl font-bold text-slate-800"></h3>
+                            <p id="modal-subtitle" class="text-slate-600"></p>
+                        </div>
+                    </div>
+                    <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 text-2xl">&times;</button>
+                </div>
+                
+                <div class="space-y-6">
                     <div>
-                        <p class="font-bold text-sm opacity-80">GUIDE PÉDAGOGIQUE</p>
-                        <h1 class="text-3xl font-extrabold">Animer un Idéathon Jeunes</h1>
-                        <p class="text-lg font-medium opacity-90">en Mission Locale</p>
+                        <h4 class="font-semibold text-lg text-slate-800 mb-3">🎯 Rôle</h4>
+                        <p id="modal-role" class="text-slate-700"></p>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold text-lg text-slate-800 mb-3">⚙️ Caractéristiques</h4>
+                        <ul id="modal-characteristics" class="text-slate-700 space-y-2"></ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold text-lg text-slate-800 mb-3">🤝 Contribution attendue</h4>
+                        <ul id="modal-contribution" class="text-slate-700 space-y-2"></ul>
                     </div>
                 </div>
             </div>
-            <div class="p-8 space-y-6">
-                <div>
-                    <h2 class="text-xl font-bold text-blue-800 mb-2 flex items-center gap-2"><i data-lucide="goal" class="w-5 h-5"></i>Objectif</h2>
-                    <p class="text-gray-700">Transformer les idées et les préoccupations des jeunes (16-25 ans) en projets citoyens concrets et réalisables sur leur territoire. Cette méthode, inspirée de l'énergie de l'Idéathon, est conçue pour être ludique, participative et responsabilisante, en leur donnant les clés pour devenir acteurs de leur propre environnement. Il s'agit de leur prouver qu'ils ont non seulement le droit, mais aussi la capacité de modeler leur quotidien.</p>
-                </div>
-                <div>
-                    <h2 class="text-xl font-bold text-blue-800 mb-2 flex items-center gap-2"><i data-lucide="sparkles" class="w-5 h-5"></i>Philosophie</h2>
-                    <p class="text-gray-700">Moins de discours, plus d'action. Le point de départ est toujours le vécu, le ressenti et les observations des jeunes. C'est en partant de leur réalité que l'on co-construit des solutions authentiques et pertinentes. Cette approche garantit une implication plus forte et un sentiment d'<strong>appropriation</strong> essentiel à la réussite : le projet n'est pas une commande externe, il est <em>leur</em> projet, né de <em>leurs</em> constats.</p>
-                </div>
-            </div>
-        </section>
+        </div>
 
-        <!-- Page 2: Étape 1 -->
-        <section class="bg-white rounded-2xl shadow-lg overflow-hidden mb-8 page-card">
-            <div class="p-8 bg-emerald-600 text-white">
-                 <h2 class="text-3xl font-extrabold">Étape 1 : Connexion & Exploration</h2>
-            </div>
-            <div class="p-8">
-                <blockquote class="border-l-4 border-emerald-500 bg-emerald-50 p-4 rounded-r-lg mb-8">
-                    <h3 class="text-lg font-bold text-emerald-800">🎯 Grand Objectif</h3>
-                    <p class="text-emerald-700 mt-1">Créer un groupe soudé où la confiance règne, et réaliser un diagnostic partagé du territoire. Il s'agit de passer des ressentis individuels ("je pense que...") à une compréhension collective et nuancée ("nous remarquons que..."). Ce diagnostic partagé devient la fondation légitime sur laquelle toutes les idées futures pourront s'appuyer.</p>
-                </blockquote>
+        <!-- Conclusion -->
+        <div id="conclusion" class="mt-24 pt-16">
+            <div class="bg-gradient-to-r from-slate-800 to-slate-700 text-white p-10 rounded-2xl block-shadow">
+                <div class="flex items-center justify-center mb-8">
+                    <span class="text-4xl mr-4">✅</span>
+                    <h2 class="text-3xl font-bold">Synthèse de la Compétence A3</h2>
+                </div>
                 
-                <div class="space-y-6">
-                    <!-- Fiche Action 1.1 -->
-                    <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
-                        <h4 class="text-lg font-bold text-gray-800">Fiche Action 1.1 : Icebreaker "Speed-Dating"</h4>
-                        <p class="text-sm text-gray-600 mt-2"><strong>Objectif :</strong> Briser la glace de manière dynamique, créer des liens personnels et initier une culture d'écoute et de partage dès les premières minutes.</p>
-                        <div class="mt-4 text-sm text-gray-700"><strong>Durée :</strong> 20 min | <strong>Matériel :</strong> Enceinte, espace dégagé.</div>
-                        <ol class="mt-4 space-y-2 list-decimal list-inside text-gray-700">
-                            <li>Expliquez la règle : quand la musique joue, on se déplace. Quand elle s'arrête, on forme un duo.</li>
-                            <li>Lancez la musique, laissez les jeunes se déplacer.</li>
-                            <li>Coupez la musique. Posez une question simple (ex: "Quel est ton film/série du moment ?").</li>
-                            <li>Répétez 3x avec des questions plus engageantes (ex: "Un lieu que tu adores ici ?", "Ton super-pouvoir pour la ville ?").</li>
-                        </ol>
-                        <div class="mt-4 bg-emerald-100 text-emerald-800 p-3 rounded-lg text-sm flex items-start gap-3">
-                            <i data-lucide="lightbulb" class="w-5 h-5 flex-shrink-0 mt-0.5"></i>
-                            <p><strong>Conseil de l'animateur :</strong> Participez vous-même à l'activité pour vous inclure dans le groupe. Votre enthousiasme est contagieux !</p>
-                        </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white/10 rounded-lg p-6">
+                        <div class="text-lg text-white mb-2">📅 Système de réunions</div>
+                        <div class="text-sm text-slate-300">9 types de réunions coordonnées</div>
+                        <div class="text-xs text-slate-400 mt-2">Hub central : Coordinateur Innovation</div>
                     </div>
-                    <!-- Fiche Action 1.2 -->
-                    <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
-                        <h4 class="text-lg font-bold text-gray-800">Fiche Action 1.2 : Cartographie Sensible</h4>
-                        <p class="text-sm text-gray-600 mt-2"><strong>Objectif :</strong> Faire émerger une vision collective du territoire en identifiant les lieux aimés, évités, et les zones à potentiel.</p>
-                        <div class="mt-4 text-sm text-gray-700"><strong>Durée :</strong> 45 min | <strong>Matériel :</strong> Grande carte, 4 couleurs de gommettes/post-it.</div>
-                        <ol class="mt-4 space-y-2 list-decimal list-inside text-gray-700">
-                            <li>Présentez la carte et définissez les 4 couleurs (💚 J'aime, ❤️ J'évite, 🤔 Il manque, 💡 Potentiel).</li>
-                            <li>Invitez chaque jeune à coller ses gommettes et à expliquer chaque choix en une phrase.</li>
-                            <li>Animez une discussion : "Qu'est-ce qui vous surprend ?", "Où sont les opportunités ?".</li>
-                            <li>Prenez une photo de la carte : c'est la base pour l'étape 2.</li>
-                        </ol>
-                         <div class="mt-4 bg-emerald-100 text-emerald-800 p-3 rounded-lg text-sm flex items-start gap-3">
-                            <i data-lucide="lightbulb" class="w-5 h-5 flex-shrink-0 mt-0.5"></i>
-                            <p><strong>Conseil de l'animateur :</strong> Ne cherchez pas le consensus. Un parc peut être "J'aime" et "J'évite" ; c'est cette tension qui est riche d'enseignements.</p>
-                        </div>
-                    </div>
-                    <!-- Fiche Action 1.3 -->
-                    <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
-                        <h4 class="text-lg font-bold text-gray-800">Fiche Action 1.3 : Rencontre Inspirante</h4>
-                        <p class="text-sm text-gray-600 mt-2"><strong>Objectif :</strong> Montrer que l'engagement est possible et concret en invitant un jeune déjà engagé localement.</p>
-                        <div class="mt-4 text-sm text-gray-700"><strong>Durée :</strong> 30 min | <strong>Matériel :</strong> Espace convivial.</div>
-                        <ol class="mt-4 space-y-2 list-decimal list-inside text-gray-700">
-                            <li>Présentez l'invité(e) et le but : un partage d'expérience authentique.</li>
-                            <li>L'invité(e) raconte son parcours en se concentrant sur le "comment" (le déclic, les galères, les fiertés).</li>
-                            <li>Ouvrez la discussion avec le groupe.</li>
-                        </ol>
-                        <div class="mt-4 bg-emerald-100 text-emerald-800 p-3 rounded-lg text-sm flex items-start gap-3">
-                           <i data-lucide="lightbulb" class="w-5 h-5 flex-shrink-0 mt-0.5"></i>
-                            <p><strong>Conseil de l'animateur :</strong> Choisissez un invité proche de l'âge des participants pour qu'ils se disent : "Si il/elle l'a fait, pourquoi pas moi ?".</p>
-                        </div>
+                    <div class="bg-white/10 rounded-lg p-6">
+                        <div class="text-lg text-white mb-2">👥 Organisation RH</div>
+                        <div class="text-sm text-slate-300">Réseau des ambassadeurs territoriaux</div>
+                        <div class="text-xs text-slate-400 mt-2">Mission Locale Pays Basque</div>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- Page 3: Étape 2 -->
-        <section class="bg-white rounded-2xl shadow-lg overflow-hidden mb-8 page-card">
-            <div class="p-8 bg-indigo-600 text-white">
-                 <h2 class="text-3xl font-extrabold">Étape 2 : Idéation & Construction</h2>
-            </div>
-            <div class="p-8">
-                <blockquote class="border-l-4 border-indigo-500 bg-indigo-50 p-4 rounded-r-lg mb-8">
-                    <h3 class="text-lg font-bold text-indigo-800">🎯 Grand Objectif</h3>
-                    <p class="text-indigo-700 mt-1">Transformer les constats et les besoins identifiés en un projet structuré. L'enjeu est de canaliser l'énergie créative pour passer de l'intuition à une proposition de valeur claire et organisée, en faisant le tri entre toutes les possibilités.</p>
-                </blockquote>
                 
-                <div class="space-y-6">
-                     <!-- Fiche Action 2.1 -->
-                    <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
-                        <h4 class="text-lg font-bold text-gray-800">Fiche Action 2.1 : Brainstorming "Speed-Ideas"</h4>
-                        <p class="text-sm text-gray-600 mt-2"><strong>Objectif :</strong> Générer un maximum d'idées brutes en un minimum de temps, sans censure ni jugement.</p>
-                        <div class="mt-4 text-sm text-gray-700"><strong>Durée :</strong> 25 min | <strong>Matériel :</strong> Post-it, marqueurs, mur.</div>
-                        <ol class="mt-4 space-y-2 list-decimal list-inside text-gray-700">
-                            <li>Formez des sous-groupes et choisissez un défi issu de la carte sensible.</li>
-                            <li>Phase de divergence (10 min) : en silence, chacun écrit un maximum d'idées (1 post-it = 1 idée).</li>
-                            <li>Phase de convergence (10 min) : en groupe, présentez et regroupez les idées similaires.</li>
-                        </ol>
-                        <div class="mt-4 bg-indigo-100 text-indigo-800 p-3 rounded-lg text-sm flex items-start gap-3">
-                            <i data-lucide="lightbulb" class="w-5 h-5 flex-shrink-0 mt-0.5"></i>
-                            <p><strong>Conseil de l'animateur :</strong> Insistez sur la règle "pas de critique" pendant la phase de divergence. L'autocensure est le premier frein à l'innovation.</p>
-                        </div>
-                    </div>
-                     <!-- Fiche Action 2.2 -->
-                    <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
-                        <h4 class="text-lg font-bold text-gray-800">Fiche Action 2.2 : Triage des Idées</h4>
-                        <p class="text-sm text-gray-600 mt-2"><strong>Objectif :</strong> Sélectionner collectivement l'idée la plus porteuse en croisant l'envie et le réalisme.</p>
-                        <div class="mt-4 text-sm text-gray-700"><strong>Durée :</strong> 20 min | <strong>Matériel :</strong> Graphique Motivation/Faisabilité, post-it.</div>
-                        <ol class="mt-4 space-y-2 list-decimal list-inside text-gray-700">
-                            <li>Présentez la matrice et ses 4 quadrants (Pépite, Défi, Facile, À oublier).</li>
-                            <li>En groupe, discutez et placez chaque "famille" d'idées sur le graphique.</li>
-                            <li>Concentrez-vous sur le quadrant "Pépite" et organisez un vote à gommettes pour le choix final.</li>
-                        </ol>
-                        <div class="mt-4 bg-indigo-100 text-indigo-800 p-3 rounded-lg text-sm flex items-start gap-3">
-                            <i data-lucide="lightbulb" class="w-5 h-5 flex-shrink-0 mt-0.5"></i>
-                            <p><strong>Conseil de l'animateur :</strong> La "faisabilité" doit être évaluée à leur échelle : "Est-ce réalisable par nous, avec un petit coup de pouce ?".</p>
-                        </div>
-                    </div>
-                     <!-- Fiche Action 2.3 -->
-                    <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
-                        <h4 class="text-lg font-bold text-gray-800">Fiche Action 2.3 : Canevas de Projet</h4>
-                        <p class="text-sm text-gray-600 mt-2"><strong>Objectif :</strong> Transformer l'idée choisie en un concept de projet clair et partagé.</p>
-                        <div class="mt-4 text-sm text-gray-700"><strong>Durée :</strong> 50 min | <strong>Matériel :</strong> Modèle de "Canevas Projet", post-it.</div>
-                        <ol class="mt-4 space-y-2 list-decimal list-inside text-gray-700">
-                            <li>Présentez le canevas et son objectif : avoir une vision à 360° du projet.</li>
-                            <li>En groupe, remplissez chaque case du canevas, du "Pourquoi" au "Comment".</li>
-                            <li>Chaque groupe présente son canevas complété aux autres pour un premier retour.</li>
-                        </ol>
-                        <div class="mt-4 bg-indigo-100 text-indigo-800 p-3 rounded-lg text-sm flex items-start gap-3">
-                            <i data-lucide="lightbulb" class="w-5 h-5 flex-shrink-0 mt-0.5"></i>
-                            <p><strong>Conseil de l'animateur :</strong> Encouragez-les à utiliser des mots simples. Le canevas doit être compréhensible par un futur partenaire.</p>
-                        </div>
-                    </div>
+                <div class="text-center bg-gradient-to-r from-blue-600 to-purple-600 p-6 rounded-xl">
+                    <div class="text-2xl font-bold text-white mb-2">🎯 Rôle = Responsable transversal et stratégique</div>
+                    <p class="text-blue-100">Garant de la cohérence opérationnelle et de la performance collective</p>
                 </div>
-            </div>
-        </section>
-
-        <!-- Page 4: Étape 3 -->
-        <section class="bg-white rounded-2xl shadow-lg overflow-hidden mb-8 page-card">
-            <div class="p-8 bg-amber-600 text-white">
-                 <h2 class="text-3xl font-extrabold">Étape 3 : Action & Impact</h2>
-            </div>
-            <div class="p-8">
-                <blockquote class="border-l-4 border-amber-500 bg-amber-50 p-4 rounded-r-lg mb-8">
-                    <h3 class="text-lg font-bold text-amber-800">🎯 Grand Objectif</h3>
-                    <p class="text-amber-700 mt-1">Savoir présenter son projet de manière convaincante et le connecter à l'écosystème local pour envisager la suite. Il s'agit de construire les premiers ponts entre le projet et le monde réel, et de donner aux jeunes une feuille de route claire.</p>
-                </blockquote>
                 
-                <div class="space-y-6">
-                     <!-- Fiche Action 3.1 -->
-                    <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
-                        <h4 class="text-lg font-bold text-gray-800">Fiche Action 3.1 : Atelier "Pitch Ton Projet !"</h4>
-                        <p class="text-sm text-gray-600 mt-2"><strong>Objectif :</strong> Préparer une présentation courte (3 min) et percutante en se basant sur le storytelling.</p>
-                        <div class="mt-4 text-sm text-gray-700"><strong>Durée :</strong> 45 min | <strong>Matériel :</strong> Canevas de projet, paperboards/Canva.</div>
-                        <ol class="mt-4 space-y-2 list-decimal list-inside text-gray-700">
-                            <li>Expliquez la structure du pitch : 1. Le problème/l'histoire. 2. Votre solution. 3. L'impact visé et vos besoins.</li>
-                            <li>En groupe, les jeunes préparent leur pitch et choisissent un format (diapo, scénette...).</li>
-                            <li>Organisez des répétitions entre groupes pour des retours bienveillants.</li>
-                        </ol>
-                        <div class="mt-4 bg-amber-100 text-amber-800 p-3 rounded-lg text-sm flex items-start gap-3">
-                            <i data-lucide="lightbulb" class="w-5 h-5 flex-shrink-0 mt-0.5"></i>
-                            <p><strong>Conseil de l'animateur :</strong> Le plus important n'est pas d'être parfait, mais de transmettre l'énergie du groupe. L'authenticité est plus puissante que la perfection.</p>
-                        </div>
-                    </div>
-                     <!-- Fiche Action 3.2 -->
-                    <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
-                        <h4 class="text-lg font-bold text-gray-800">Fiche Action 3.2 : Le Grand Oral</h4>
-                        <p class="text-sm text-gray-600 mt-2"><strong>Objectif :</strong> Présenter les projets pour obtenir un retour constructif et créer des opportunités.</p>
-                        <div class="mt-4 text-sm text-gray-700"><strong>Durée :</strong> 40 min+ | <strong>Matériel :</strong> Espace de présentation, jury bienveillant.</div>
-                        <ol class="mt-4 space-y-2 list-decimal list-inside text-gray-700">
-                            <li>Présentez le jury et rappelez le cadre : bienveillance et écoute.</li>
-                            <li>Chaque groupe pitche (3 min) et répond aux questions (2 min).</li>
-                            <li>À la fin, organisez un vote "coup de cœur" et un temps de retour du jury.</li>
-                        </ol>
-                        <div class="mt-4 bg-amber-100 text-amber-800 p-3 rounded-lg text-sm flex items-start gap-3">
-                            <i data-lucide="lightbulb" class="w-5 h-5 flex-shrink-0 mt-0.5"></i>
-                            <p><strong>Conseil de l'animateur :</strong> Briefez bien le jury en amont : il est là pour encourager, poser des questions qui font avancer, et ouvrir des portes.</p>
-                        </div>
-                    </div>
-                     <!-- Fiche Action 3.3 -->
-                    <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
-                        <h4 class="text-lg font-bold text-gray-800">Fiche Action 3.3 : Le Carrefour de l'Engagement</h4>
-                        <p class="text-sm text-gray-600 mt-2"><strong>Objectif :</strong> Créer des passerelles concrètes entre les projets et les opportunités du territoire.</p>
-                        <div class="mt-4 text-sm text-gray-700"><strong>Durée :</strong> 30 min | <strong>Matériel :</strong> Tableau blanc/paperboard.</div>
-                        <ol class="mt-4 space-y-2 list-decimal list-inside text-gray-700">
-                            <li>Expliquez l'objectif : transformer l'idée en action en identifiant le tout premier pas.</li>
-                            <li>Pour chaque projet, remplissez 3 colonnes avec l'aide de tous : Partenaires, Prochaines étapes, Personne ressource.</li>
-                            <li>Chaque groupe repart avec une photo de sa "feuille de route".</li>
-                        </ol>
-                        <div class="mt-4 bg-amber-100 text-amber-800 p-3 rounded-lg text-sm flex items-start gap-3">
-                            <i data-lucide="lightbulb" class="w-5 h-5 flex-shrink-0 mt-0.5"></i>
-                            <p><strong>Conseil de l'animateur :</strong> Votre connaissance du réseau local est cruciale ici pour suggérer des contacts pertinents et crédibles.</p>
-                        </div>
-                    </div>
+                <!-- Bouton retour en haut -->
+                <div class="text-center mt-8">
+                    <a href="#" class="inline-flex items-center px-6 py-3 bg-white/20 hover:bg-white/30 rounded-full text-white transition-colors">
+                        <span class="mr-2">⬆️</span>
+                        Retour en haut
+                    </a>
                 </div>
             </div>
-        </section>
-
-        <!-- Page 5: Points Forts -->
-        <section class="bg-white rounded-2xl shadow-lg overflow-hidden mb-8 page-card">
-            <div class="p-8 bg-slate-700 text-white">
-                 <h2 class="text-3xl font-extrabold">Les Points Forts de la Méthode</h2>
-            </div>
-            <div class="p-8 grid md:grid-cols-2 gap-6">
-                <div class="bg-slate-50 p-4 rounded-xl">
-                    <h3 class="font-bold text-slate-800 flex items-center gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-500"></i>Clé-en-main & Flexible</h3>
-                    <p class="text-slate-600 text-sm mt-1">Un guide structuré pas-à-pas, mais dont vous pouvez facilement adapter le rythme et les activités (en 3 ateliers, sur un week-end intensif, etc.) en fonction de votre groupe et de vos contraintes.</p>
-                </div>
-                <div class="bg-slate-50 p-4 rounded-xl">
-                    <h3 class="font-bold text-slate-800 flex items-center gap-2"><i data-lucide="smartphone" class="w-5 h-5 text-blue-500"></i>Hybride (Physique & Numérique)</h3>
-                    <p class="text-slate-600 text-sm mt-1">Chaque activité propose une alternative via smartphone (Miro, Mentimeter, Canva...). L'usage du numérique facilite la collaboration en temps réel, la production de livrables visuels modernes et engage les jeunes avec des outils qu'ils maîtrisent.</p>
-                </div>
-                <div class="bg-slate-50 p-4 rounded-xl">
-                    <h3 class="font-bold text-slate-800 flex items-center gap-2"><i data-lucide="megaphone" class="w-5 h-5 text-indigo-500"></i>Valorisation de la Voix des Jeunes</h3>
-                    <p class="text-slate-600 text-sm mt-1">Les livrables (cartes sensibles, fiches projet, pitchs) sont des outils concrets et tangibles. Ils transforment une simple "parole de jeune" en une proposition argumentée, prête à être partagée avec des partenaires (élus, associations), renforçant ainsi leur légitimité et leur confiance en eux.</p>
-                </div>
-                <div class="bg-slate-50 p-4 rounded-xl">
-                    <h3 class="font-bold text-slate-800 flex items-center gap-2"><i data-lucide="bridge" class="w-5 h-5 text-amber-500"></i>Création de Passerelles</h3>
-                    <p class="text-slate-600 text-sm mt-1">Le "Carrefour de l'Engagement" est l'étape cruciale qui prévient l'effet "one-shot". Il ancre les projets dans la réalité locale et montre aux jeunes un chemin concret pour poursuivre leur engagement, transformant une expérience ponctuelle en un potentiel parcours citoyen.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Page 6: Rôle de l'animateur -->
-        <section class="bg-white rounded-2xl shadow-lg overflow-hidden page-card">
-            <div class="p-8 bg-rose-600 text-white">
-                 <h2 class="text-3xl font-extrabold">Le Rôle de l'Animateur</h2>
-            </div>
-            <div class="p-8 space-y-4">
-                <p class="text-lg text-gray-800">Votre rôle est celui d'un <strong>facilitateur</strong> : vous êtes le gardien du cadre et du processus, pas le détenteur du contenu.</p>
-                <div class="bg-rose-50 border-l-4 border-rose-500 p-4">
-                    <h3 class="font-bold text-rose-800">Créer un cadre bienveillant</h3>
-                    <p class="text-rose-700 mt-1">Où chacun ose s'exprimer, se tromper, et construire sur les idées des autres. Cela passe par une écoute active, la valorisation de chaque contribution et la gestion positive des désaccords.</p>
-                </div>
-                <div class="bg-rose-50 border-l-4 border-rose-500 p-4">
-                    <h3 class="font-bold text-rose-800">Guider le processus</h3>
-                    <p class="text-rose-700 mt-1">Sans imposer vos propres idées. Vous posez les bonnes questions au bon moment ("Et si...?", "Pourquoi est-ce important pour vous ?"), vous reformulez pour clarifier, et vous vous assurez que le groupe avance à travers les étapes.</p>
-                </div>
-                <div class="bg-rose-50 border-l-4 border-rose-500 p-4">
-                    <h3 class="font-bold text-rose-800">Rythmer les activités</h3>
-                    <p class="text-rose-700 mt-1">Pour maintenir une dynamique positive. Il s'agit de gérer le temps et l'énergie du groupe, en alternant les moments de réflexion individuelle, de travail en petit groupe et de mise en commun collective.</p>
-                </div>
-                <div class="bg-rose-50 border-l-4 border-rose-500 p-4">
-                    <h3 class="font-bold text-rose-800">Aider à faire les ponts</h3>
-                    <p class="text-rose-700 mt-1">Entre les idées des jeunes et les ressources du territoire. Vous êtes un "traducteur" qui aide à connecter le langage et la culture des jeunes avec ceux des institutions et des associations locales, en rendant les choses accessibles et moins intimidantes.</p>
-                </div>
-            </div>
-        </section>
-
+        </div>
     </div>
 
     <script>
-        lucide.createIcons();
-    </script>
+        // Données des réunions
+        const meetingData = {
+            coordinateur: {
+                icon: '🎯',
+                title: 'Coordinateur Innovation, Professionnalisation & Outillage',
+                subtitle: 'Hub central du système de réunions',
+                role: 'Pilote et coordonne l\'ensemble du système de réunions de la Mission Locale Pays Basque. Garant de la cohérence et de l\'efficacité des échanges.',
+                characteristics: [
+                    'Animation du réseau des ambassadeurs territoriaux',
+                    'Coordination des différents types de réunions',
+                    'Capitalisation des pratiques et outils',
+                    'Interface avec la direction et les partenaires'
+                ],
+                contribution: [
+                    'Organiser et animer les réunions mensuelles',
+                    'Préparer les contenus thématiques et formations',
+                    'Assurer le suivi des décisions et livrables',
+                    'Garantir la cohérence du système global'
+                ]
+            },
+            ambassadeurs: {
+                icon: '👥',
+                title: 'Réunion mensuelle des ambassadeurs',
+                subtitle: '1h en visioconférence - Mensuelle',
+                role: 'Réunion de coordination et d\'échange entre les ambassadeurs territoriaux pour partager les expériences et préparer les actions.',
+                characteristics: [
+                    'Tour de table : succès, vigilances, besoins d\'appui',
+                    'Zoom sur un outil ou une expérimentation',
+                    'Préparation des flashmob mensuels',
+                    'Coordination des réunions de territoire'
+                ],
+                contribution: [
+                    'Partager les retours d\'expérience territoriaux',
+                    'Identifier les besoins de formation ou d\'appui',
+                    'Co-construire les contenus des flashmob',
+                    'Livrable : compte rendu synthétique (3 points)'
+                ]
+            },
+            thematiques: {
+                icon: '🛠️',
+                title: 'Réunions thématiques + formations partenaires',
+                subtitle: '½ journée - Présentiel/Visio - Modalités multiples',
+                role: 'Sessions d\'appropriation de nouveaux dispositifs, outils et méthodes. Inclut les formations partenaires comme modalité spécifique.',
+                characteristics: [
+                    'Modalité interne : appropriation nouveaux dispositifs et outils',
+                    'Modalité partenaires : formation "Jericho campaign", lutte discriminations',
+                    'Professionnalisation des pratiques',
+                    'Renforcement des partenariats territoriaux'
+                ],
+                contribution: [
+                    'Former équipes et partenaires aux nouveaux outils',
+                    'Valider les guides d\'usage',
+                    'Harmoniser les pratiques professionnelles',
+                    'Livrable : kit thématique + supports + fiches outils + replay'
+                ]
+            },
+            internationales: {
+                icon: '🌍',
+                title: 'Sessions internationales/transfrontalières',
+                subtitle: '3-4 jours - 2 fois par an',
+                role: 'Échanges et capitalisation des pratiques dans le cadre des projets européens et de la coopération transfrontalière.',
+                characteristics: [
+                    'Projet "Take Off Pro" (3-4 jours)',
+                    'Programme "Lanean" (3-4 jours)',
+                    'Capitalisation de pratiques européennes',
+                    'Échanges avec partenaires espagnols et européens'
+                ],
+                contribution: [
+                    'Développer la coopération européenne',
+                    'Capitaliser les bonnes pratiques internationales',
+                    'Former aux dispositifs européens',
+                    'Livrable : carnet de bonnes pratiques'
+                ]
+            },
+            territoires: {
+                icon: '📍',
+                title: 'Réunions territoires + travail collaboratif',
+                subtitle: '1h30 bi-mensuelles - Modalité collaborative possible',
+                role: 'Partage local et coordination territoriale. Inclut le travail collaboratif comme modalité avec participation des jeunes.',
+                characteristics: [
+                    'Modalité standard : partage enjeux locaux, diagnostic besoins',
+                    'Modalité collaborative : co-construction outils avec jeunes',
+                    'Coordination des antennes territoriales',
+                    'Harmonisation des pratiques et regards croisés'
+                ],
+                contribution: [
+                    'Identifier les besoins territoriaux spécifiques',
+                    'Co-construire des outils avec les jeunes',
+                    'Adapter les outils au contexte local',
+                    'Livrable : fiche synthèse territoire + prototype d\'outil révisé'
+                ]
+            },
+            strategique: {
+                icon: '📊',
+                title: 'Réunion stratégique + modalité élargie',
+                subtitle: '1h mensuelle - Modalité élargie 2h bi-mensuelle',
+                role: 'Arbitrages stratégiques et décisions organisationnelles. Modalité élargie pour cohérence territoriale globale.',
+                characteristics: [
+                    'Modalité restreinte : Coordo + Alain + MAM + Amandine (1h)',
+                    'Modalité élargie : + coordinateurs territoires + CEJ + direction (2h)',
+                    'Arbitrages stratégiques et suivi projets',
+                    'Articulation CEJ ↔ projets et cohérence territoriale'
+                ],
+                contribution: [
+                    'Prendre les décisions stratégiques',
+                    'Assurer la cohérence territoriale globale',
+                    'Articuler CEJ et projets innovants',
+                    'Livrable : relevé de décisions + tableau d\'ajustements'
+                ]
+            },
+            flashmob: {
+                icon: '🎬',
+                title: 'Flashmob mensuel co-construit',
+                subtitle: 'Chaque mois - Jeudi matin 8h30-9h',
+                role: 'Moment de cohésion, valorisation des ambassadeurs et professionnalisation des conseillers par des capsules courtes.',
+                characteristics: [
+                    'Cohésion d\'équipe',
+                    'Valorisation des ambassadeurs',
+                    'Professionnalisation des conseillers',
+                    'Format court et dynamique'
+                ],
+                contribution: [
+                    'Renforcer la cohésion d\'équipe',
+                    'Valoriser les initiatives territoriales',
+                    'Former de manière ludique et efficace',
+                    'Livrable : capsule vidéo + diffusion interne/externe'
+                ]
+            }
+        };
 
-</body>
+        // Données des membres de l'équipe
+        const teamData = {
+            coordinateur: {
+                icon: '🎯',
+                title: 'Coordinateur Innovation & Outillage',
+                subtitle: 'Hub central du réseau',
+                role: 'Ensemblier et garant de la cohérence du réseau des ambassadeurs territoriaux. Responsable de la capitalisation des pratiques et de la professionnalisation des outils.',
+                characteristics: [
+                    'Vision transversale de l\'ensemble des territoires',
+                    'Expertise en innovation pédagogique et outillage',
+                    'Capacité de synthèse et d\'harmonisation',
+                    'Animation du réseau et facilitation des échanges'
+                ],
+                contribution: [
+                    'Coordonner les actions des ambassadeurs territoriaux',
+                    'Capitaliser et diffuser les bonnes pratiques',
+                    'Assurer la cohérence des outils et méthodes',
+                    'Professionnaliser les approches territoriales'
+                ]
+            },
+            sud: {
+                icon: '🌿',
+                title: 'Sud Pays Basque',
+                subtitle: 'Équipe mixte mobilité et international',
+                role: 'Équipe combinant expertise en mobilité territoriale (Cathy & Julie) et spécialisation transfrontalière/internationale (Béa, Lucile & Isa). Coordination des enjeux locaux et européens.',
+                characteristics: [
+                    'Mobilité territoire : Animation ateliers "Je Me Déplace" (Cathy & Julie)',
+                    'Transfrontalier : Expertise coopération européenne (Béa, Lucile & Isa)',
+                    'Maîtrise des dispositifs Erasmus+, Interreg et mobilité locale',
+                    'Connaissance fine du territoire Sud Pays Basque'
+                ],
+                contribution: [
+                    'Coordonner mobilité locale et internationale',
+                    'Développer les partenariats transfrontaliers',
+                    'Tester et diffuser les outils de mobilité',
+                    'Former aux dispositifs locaux et européens'
+                ]
+            },
+            babsud: {
+                icon: '🌊',
+                title: 'BAB Sud',
+                subtitle: 'Mélissa & Maiwenn - Mobilité et projets innovants',
+                role: 'Équipe spécialisée combinant mobilité/accompagnement local (Mélissa) et projets innovants LS4YOU (Maiwenn). Expertise en innovation pédagogique et mobilité urbaine.',
+                characteristics: [
+                    'Mobilité : Accompagnement individualisé et partenariats locaux (Mélissa)',
+                    'Innovation : Spécialiste projets LS4YOU et méthodes innovantes (Maiwenn)',
+                    'Connaissance des enjeux urbains BAB Sud',
+                    'Approche personnalisée et créative des parcours'
+                ],
+                contribution: [
+                    'Expérimenter les outils d\'accompagnement et LS4YOU',
+                    'Adapter les méthodes au contexte urbain',
+                    'Développer l\'innovation pédagogique',
+                    'Évaluer l\'efficacité des nouveaux dispositifs'
+                ]
+            },
+            babnord: {
+                icon: '🎨',
+                title: 'BAB Nord',
+                subtitle: 'Pauline Zara - Référente innovation pédagogique',
+                role: 'Référente innovation pédagogique spécialisée dans "Life Skills for You", développement des compétences transversales et nouvelles approches pédagogiques.',
+                characteristics: [
+                    'Expertise en innovation pédagogique',
+                    'Spécialiste "Life Skills for You"',
+                    'Créativité dans les approches d\'accompagnement',
+                    'Veille sur les nouvelles méthodes'
+                ],
+                contribution: [
+                    'Innover dans les méthodes pédagogiques',
+                    'Tester de nouveaux outils d\'accompagnement',
+                    'Former les équipes aux nouvelles approches',
+                    'Évaluer l\'impact des innovations'
+                ]
+            },
+            territoire: {
+                icon: '🚗',
+                title: 'Mobilité Territoire',
+                subtitle: 'JPT - Référent mobilité',
+                role: 'Référent mobilité territoriale spécialisé dans l\'accompagnement des déplacements locaux et l\'animation des dispositifs de mobilité sur l\'ensemble du territoire.',
+                characteristics: [
+                    'Expertise en mobilité territoriale locale',
+                    'Connaissance fine des enjeux de déplacement',
+                    'Animation des dispositifs mobilité territoriaux',
+                    'Accompagnement individualisé des parcours mobilité'
+                ],
+                contribution: [
+                    'Développer les outils de mobilité territoriale',
+                    'Coordonner les actions mobilité inter-territoires',
+                    'Adapter les dispositifs aux spécificités locales',
+                    'Former les équipes aux enjeux mobilité'
+                ]
+            },
+            pbi: {
+                icon: '⚡',
+                title: 'PBI (Pays Basque Intérieur)',
+                subtitle: 'Alain - Référent territoire/LS4YOU/ROAMING',
+                role: 'Référent territorial spécialisé dans les dispositifs LS4YOU et ROAMING, expert en coordination multi-sites et animation territoriale du Pays Basque Intérieur.',
+                characteristics: [
+                    'Expertise en coordination territoriale PBI',
+                    'Spécialiste des dispositifs "LS4YOU" et "ROAMING"',
+                    'Connaissance approfondie du Pays Basque Intérieur',
+                    'Animation de réseaux multi-partenaires ruraux'
+                ],
+                contribution: [
+                    'Coordonner les actions territoriales PBI',
+                    'Optimiser et déployer "LS4YOU" et "ROAMING"',
+                    'Faciliter les échanges inter-territoires',
+                    'Développer les synergies territoriales rurales'
+                ]
+            },
+            transfrontalier: {
+                icon: '🤝',
+                title: 'Transfrontalier / Lanean',
+                subtitle: 'Zigor - Référent coordination transfrontalière',
+                role: 'Référent coordination transfrontalière et partenariats, spécialisé dans les projets "Lanean" et "Baserriberri", expert en coopération avec l\'Espagne.',
+                characteristics: [
+                    'Expertise en coopération transfrontalière',
+                    'Maîtrise des projets "Lanean" et "Baserriberri"',
+                    'Réseau partenarial espagnol développé',
+                    'Bilinguisme français/espagnol/euskera'
+                ],
+                contribution: [
+                    'Développer les partenariats transfrontaliers',
+                    'Piloter les projets "Lanean" et "Baserriberri"',
+                    'Faciliter les échanges avec les partenaires espagnols',
+                    'Innover dans les approches transfrontalières'
+                ]
+            }
+        };
+
+        function openMeetingModal(meetingId) {
+            const meeting = meetingData[meetingId];
+            if (!meeting) return;
+
+            document.getElementById('modal-icon').textContent = meeting.icon;
+            document.getElementById('modal-title').textContent = meeting.title;
+            document.getElementById('modal-subtitle').textContent = meeting.subtitle;
+            document.getElementById('modal-role').textContent = meeting.role;
+
+            const characteristicsList = document.getElementById('modal-characteristics');
+            characteristicsList.innerHTML = '';
+            meeting.characteristics.forEach(char => {
+                const li = document.createElement('li');
+                li.innerHTML = `<span class="text-blue-600 mr-2">•</span>${char}`;
+                characteristicsList.appendChild(li);
+            });
+
+            const contributionList = document.getElementById('modal-contribution');
+            contributionList.innerHTML = '';
+            meeting.contribution.forEach(contrib => {
+                const li = document.createElement('li');
+                li.innerHTML = `<span class="text-green-600 mr-2">•</span>${contrib}`;
+                contributionList.appendChild(li);
+            });
+
+            document.getElementById('modal').classList.remove('hidden');
+            document.getElementById('modal').classList.add('flex');
+        }
+
+        function openModal(memberId) {
+            const member = teamData[memberId];
+            if (!member) return;
+
+            document.getElementById('modal-icon').textContent = member.icon;
+            document.getElementById('modal-title').textContent = member.title;
+            document.getElementById('modal-subtitle').textContent = member.subtitle;
+            document.getElementById('modal-role').textContent = member.role;
+
+            const characteristicsList = document.getElementById('modal-characteristics');
+            characteristicsList.innerHTML = '';
+            member.characteristics.forEach(char => {
+                const li = document.createElement('li');
+                li.innerHTML = `<span class="text-blue-600 mr-2">•</span>${char}`;
+                characteristicsList.appendChild(li);
+            });
+
+            const contributionList = document.getElementById('modal-contribution');
+            contributionList.innerHTML = '';
+            member.contribution.forEach(contrib => {
+                const li = document.createElement('li');
+                li.innerHTML = `<span class="text-green-600 mr-2">•</span>${contrib}`;
+                contributionList.appendChild(li);
+            });
+
+            document.getElementById('modal').classList.remove('hidden');
+            document.getElementById('modal').classList.add('flex');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.add('hidden');
+            document.getElementById('modal').classList.remove('flex');
+        }
+
+        // Fermer le modal avec la touche Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Fonction pour afficher/masquer les détails des compétences
+        function toggleDetails(detailsId) {
+            const details = document.getElementById(detailsId);
+            const button = details.previousElementSibling.querySelector('button');
+            
+            if (details.classList.contains('hidden')) {
+                details.classList.remove('hidden');
+                button.textContent = 'Masquer les détails';
+            } else {
+                details.classList.add('hidden');
+                button.textContent = 'Voir les détails';
+            }
+        }
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9781d5c873302292',t:'MTc1NjY5ODk1OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
